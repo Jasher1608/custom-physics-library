@@ -132,6 +132,32 @@ namespace Physics2DLibrary.Math
         }
 
         /// <summary>
+        /// Projects one vector onto another.
+        /// </summary>
+        public readonly Vec2 ProjectOnto(Vec2 other)
+        {
+            float dotProduct = Dot(this, other);
+            float otherMagnitudeSq = other.SqrMagnitude();
+            return other * (dotProduct / otherMagnitudeSq);
+        }
+
+        /// <summary>
+        /// Calculate the reflection of a vector given a surface normal.
+        /// </summary>
+        public readonly Vec2 Reflect(Vec2 normal)
+        {
+            return this - normal * 2 * Dot(this, normal);
+        }
+
+        /// <summary>
+        /// Calculate a perpendicular vector.
+        /// </summary>
+        public readonly Vec2 Perpendicular()
+        {
+            return new Vec2(-y, x); // Rotate 90 degrees clockwise
+        }
+
+        /// <summary>
         /// Returns a string representation of the vector.
         /// </summary>
         public override readonly string ToString()
